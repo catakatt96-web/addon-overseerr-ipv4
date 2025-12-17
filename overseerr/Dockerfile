@@ -8,9 +8,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base
 ARG OVERSEERR_VERSION=1.33.2
 ENV COMMIT_TAG=v${OVERSEERR_VERSION}
-# hadolint ignore=DL3003,DL3042
+# hadolint ignore=DL3003,DL3042,DL3018
 RUN \
-  apk add --no-cache --virtual .build-dependencies \
+  apk upgrade --no-cache \
+  && apk add --no-cache --virtual .build-dependencies \
     build-base \
     python3 \
   \
