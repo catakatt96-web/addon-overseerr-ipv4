@@ -10,7 +10,9 @@ ARG OVERSEERR_VERSION=1.33.2
 ENV COMMIT_TAG=v${OVERSEERR_VERSION}
 # hadolint ignore=DL3003,DL3042,DL3018
 RUN \
-  apk upgrade --no-cache \
+  sed -i 's/=.*//g' /etc/apk/world \
+  && apk fix --no-cache \
+  && apk upgrade --no-cache \
   && apk add --no-cache --virtual .build-dependencies \
     build-base \
     python3 \
